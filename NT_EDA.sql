@@ -11,7 +11,8 @@ select * from etl_app.mid_prod_kd --宽带
 
 
 --从crm抽取的表:
-select * from etl_load.b
+select * from etl_load.bss_offer;--销售品实例表
+select * from etl_load.bss_offer_spec bos where bos.offer_spec_id = '300509029691';--销售品规格表
 
 
 
