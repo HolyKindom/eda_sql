@@ -19,10 +19,12 @@ select * from etl_app.mid_offer_member_prod where offer_id = '130591279031' --所
 select * from etl_app.mid_prod_cdma --cdma
 select * from etl_app.mid_prod_kd --宽带
 
---从crm抽取的表:
+--crm抽取的表:
 select * from etl_load.bss_offer bo where bo.offer_id = '13000001859';--销售品实例表
 select * from etl_load.bss_offer_spec bos where bos.offer_spec_id = '300006000153';--销售品规格表
-select * from etl_load.bss_offer_prod;--产品实例
+select * from etl_load.bss_offer_prod;--产品实例 
+select * from etl_load.bss_prod_spec
+
 select * from etl_load.bss_offer_member;
 select * from etl_load.bss_product where prod_id = '132021124039';
 
@@ -131,6 +133,15 @@ WHERE A.CSS_CUST_ID ='130000000066'
 AND A.BLNG_USER_F='Y'
 AND A.ACCESS_NUMBER LIKE 'M%'
 and a.prod_spec_id = '' ;
+
+--CRM 相关表
+select * from etl_load.bss_offer_prod_item --  value <--> item_spec_id <--> prod_id 产品实例属性 02实例--04实例成员2中有详细定义
+select * from etl_load.bss_item_spec --  item_spec_id  <--> name  属性规格，各种属性规格的公共部分  06原有 公用
+SELECT * FROM etl_load.bss_discrete_value_list bdvl WHERE bdvl.item_spec_id = 27 and bdvl.meta_key_value = 0 ; --  item_spec_id , value <--> item_spec_id , meta_key_value
+select * from etl_load.bss_product;
+select * from etl_load.bss_offer_prod where prod_id = '';
+select * from etl_load.bss_prod_spec ;-- 379 天翼
+
 
 /*
   电路产品
